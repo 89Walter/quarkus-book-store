@@ -26,7 +26,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(length = 100, unique = true)
+	@Column(length = 100, unique = false)
 	private String title;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //Una categoria può avere molti libri
