@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  database:
+    image: "postgres:14.0"
+    container_name: "walter-db"
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: my_db
+    volumes:
+    - ./data-db:/var/lib/postgresql/data
+    networks: [ walter-network ]
+books:
+  image: "walter/quarkus-book-store:1.0.0-SNAPSHOT"
+  container_name: "walter-books"
+  ports:
+    - "8080:8080"
+  depends_on: [database]
+  networks: [ walter-network ]
+
+networks:
+  walter-network:
